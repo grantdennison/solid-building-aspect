@@ -53,9 +53,9 @@ const socials = [
 
 const navBars = [
   { name: 'home', heading: 'Home' },
+  { name: 'about', heading: 'About' },
   { name: 'services', heading: 'Services' },
   { name: 'projects', heading: 'Projects' },
-  { name: 'about', heading: 'About' },
   { name: 'contact-me', heading: 'Contact Me' },
 ];
 
@@ -80,10 +80,10 @@ export default function Header() {
       if (!headerElement) {
         return;
       }
-      if (prevScrollPos > currentScrollPos || currentScrollPos < 180) {
+      if (prevScrollPos > currentScrollPos || currentScrollPos < 12) {
         headerElement.style.transform = 'translateY(0)';
       } else {
-        headerElement.style.transform = 'translateY(-180px)';
+        headerElement.style.transform = 'translateY(-170px)';
       }
       prevScrollPos = currentScrollPos;
     };
@@ -121,7 +121,7 @@ export default function Header() {
         right={0}
         translateY={0}
         transitionProperty="transform"
-        transitionDuration=".3s"
+        transitionDuration=".5s"
         transitionTimingFunction="ease-in-out"
         bgImg={navBack}
         bgPos={'center'}
@@ -139,7 +139,7 @@ export default function Header() {
           <Flex maxW={'280'}>
             <VStack justify={'center'}>
               <Image pt={2} src={logo} alt="logo" />
-              <Text mt={-2} fontSize={['8px', '4vw', '21px']}>
+              <Text mt={-2} fontSize={['8px', '3vw', '21px']}>
                 Your Trusted Subcontractor
               </Text>
             </VStack>
