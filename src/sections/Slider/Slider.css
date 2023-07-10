@@ -1,0 +1,23 @@
+.slick-dots {
+  display: flex;
+  justify-content: center;
+
+  padding: 2.5rem 0;
+  list-style-type: none;
+}
+
+li {
+  margin: 0 0.25rem;
+}
+
+button {
+  display: block;
+  background-color: rgba(8, 8, 8, 0.504) !important;
+  border: none;
+  border-radius: 100%;
+  text-indent: -9999px;
+}
+
+li.slick-active button {
+  background-color: rgba(7, 7, 8, 0.737) !important;
+}
