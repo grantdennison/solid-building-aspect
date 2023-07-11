@@ -1,13 +1,5 @@
 import React from 'react';
-import {
-  Box,
-  IconButton,
-  useBreakpointValue,
-  Stack,
-  Heading,
-  Text,
-  Container,
-} from '@chakra-ui/react';
+import { Box, Stack, Heading, Text, Container } from '@chakra-ui/react';
 import Slider from 'react-slick';
 import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
@@ -93,7 +85,7 @@ export default function HomeSlider() {
           >
             <Box
               h={400}
-              filter={'blur(9px) brightness(50%)'}
+              filter={'blur(9px) brightness(30%)'}
               pos="absolute"
               top={0}
               left={0}

@@ -70,37 +70,38 @@ export default function Header() {
   const [hDevice] = useMediaQuery('(min-height: 600px)');
   const { isOpen, onOpen, onClose } = useDisclosure();
   const btnRef = React.useRef();
+  const navHeight = wDevice ? 160 : 145;
 
-  useEffect(() => {
-    let prevScrollPos = window.scrollY;
+  // useEffect(() => {
+  //   let prevScrollPos = window.scrollY;
 
-    const handleScroll = () => {
-      const currentScrollPos = window.scrollY;
-      const headerElement = headerRef.current;
-      if (!headerElement) {
-        return;
-      }
-      if (prevScrollPos > currentScrollPos || currentScrollPos < 12) {
-        headerElement.style.transform = 'translateY(0)';
-      } else {
-        headerElement.style.transform = 'translateY(-170px)';
-      }
-      prevScrollPos = currentScrollPos;
-    };
+  //   const handleScroll = () => {
+  //     const currentScrollPos = window.scrollY;
+  //     const headerElement = headerRef.current;
+  //     if (!headerElement) {
+  //       return;
+  //     }
+  //     if (prevScrollPos > currentScrollPos || currentScrollPos < 12) {
+  //       headerElement.style.transform = 'translateY(0)';
+  //     } else {
+  //       headerElement.style.transform = 'translateY(-170px)';
+  //     }
+  //     prevScrollPos = currentScrollPos;
+  //   };
 
-    window.addEventListener('scroll', handleScroll);
+  //   window.addEventListener('scroll', handleScroll);
 
-    return () => {
-      window.removeEventListener('scroll', handleScroll);
-    };
-  }, []);
+  //   return () => {
+  //     window.removeEventListener('scroll', handleScroll);
+  //   };
+  // }, []);
 
   const handleClick = anchor => {
     const id = `${anchor}-section`;
     const element = document.getElementById(id);
 
     if (element) {
-      const navBarHeight = 100; // Adjust this value to the height of your fixed navigation bar
+      const navBarHeight = navHeight; // Adjust this value to the height of your fixed navigation bar
 
       const elementPosition = element.getBoundingClientRect().top;
       const offsetPosition = elementPosition - navBarHeight;
@@ -120,14 +121,14 @@ export default function Header() {
         left={0}
         right={0}
         translateY={0}
-        transitionProperty="transform"
-        transitionDuration=".5s"
-        transitionTimingFunction="ease-in-out"
+        // transitionProperty="transform"
+        // transitionDuration=".5s"
+        // transitionTimingFunction="ease-in-out"
         bgImg={navBack}
         bgPos={'center'}
         bgSize={'cover'}
         shadow={'inset 0 0 0 118px rgba(0,0,0,0.87)'}
-        height={170}
+        h={navHeight}
         ref={headerRef}
         p={2}
         zIndex={100}
@@ -156,7 +157,11 @@ export default function Header() {
             >
               {/* #### Avitar and Name Start #### */}
               <HStack>
-                <Avatar name="Sam Salimi" src={sam} boxSize={wDevice?24:20} />
+                <Avatar
+                  name="Sam Salimi"
+                  src={sam}
+                  boxSize={wDevice ? 24 : 20}
+                />
                 <Flex {...themeGradient}>
                   <Stack>
                     <Text fontSize={['20px', '3vw', '40px']}>SAM SALIMI</Text>
@@ -183,7 +188,12 @@ export default function Header() {
                       transform: 'scale(1.4)',
                     }}
                   >
-                    <Icon as={Image} src={social.icon} className="icon" boxSize={7} />
+                    <Icon
+                      as={Image}
+                      src={social.icon}
+                      className="icon"
+                      boxSize={7}
+                    />
                   </Link>
                 ))}
                 <Flex
@@ -237,15 +247,13 @@ export default function Header() {
         placement="right"
         onClose={onClose}
         finalFocusRef={btnRef}
-        >
+      >
         <DrawerOverlay />
-        <DrawerContent 
-        bg='gray.700'        
-        >
+        <DrawerContent bg="gray.700">
           <DrawerCloseButton />
           <DrawerHeader>
             <HStack>
-              <Avatar name="Sam Salimi" src={sam} boxSize={hDevice?24:14} />
+              <Avatar name="Sam Salimi" src={sam} boxSize={hDevice ? 24 : 14} />
               <Flex {...themeGradient}>
                 <Stack>
                   <Text fontSize={20}>SAM SALIMI</Text>
@@ -258,7 +266,12 @@ export default function Header() {
           </DrawerHeader>
 
           <DrawerBody>
-            <Flex direction={'column'} fontSize={hDevice?25:15} color='white' fontWeight="bold">
+            <Flex
+              direction={'column'}
+              fontSize={hDevice ? 25 : 15}
+              color="white"
+              fontWeight="bold"
+            >
               {navBars.map(navName => (
                 <Link
                   href={`/#${navName.name}`}
@@ -276,7 +289,7 @@ export default function Header() {
             </Flex>
           </DrawerBody>
 
-          <DrawerFooter display={hDevice?'flex':'none'}>
+          <DrawerFooter display={hDevice ? 'flex' : 'none'}>
             <Flex maxW={'280'}>
               <VStack>
                 <Image pt={2} src={logo} alt="logo" />
