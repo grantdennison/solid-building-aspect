@@ -192,7 +192,7 @@ export default function Header() {
                       as={Image}
                       src={social.icon}
                       className="icon"
-                      boxSize={7}
+                      boxSize={wDevice ? 9 : 7}
                     />
                   </Link>
                 ))}
