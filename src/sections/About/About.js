@@ -32,9 +32,10 @@ export default function About() {
         bgImg={bgImage}
         bgPos={'center'}
         bgSize={'100% 100%'}
-        shadow={'inset 0 0 0 2000px rgba(0,0,0,0.87)'}
+        shadow={'inset 0 0 0 2000px rgba(0,0,0,0.8)'}
         w={'100%'}
-        p={2}
+        pt={40}
+        pb={40}
         color={'white'}
         justifyContent="center"
       >
@@ -42,7 +43,10 @@ export default function About() {
           <Heading alignSelf={'flex-start'} mb={3}>
             {aboutHead}
           </Heading>
-          <Text fontSize={'lg'} fontFamily={'Verdana (sans-serif)'}>
+          <Text
+            fontSize={{ base: '15px', md: '25px', lg: '36px' }}
+            fontFamily={'Verdana (sans-serif)'}
+          >
             {aboutBody}
           </Text>
         </VStack>

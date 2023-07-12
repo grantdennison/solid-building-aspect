@@ -116,9 +116,10 @@ export default function HomeSlider() {
                   {card.title}
                 </Heading>
                 <Text
-                  bgColor={'whiteAlpha.600'}
-                  fontSize={'md'}
+                  bgColor={'whiteAlpha.700'}
+                  fontSize={20}
                   color="black"
+                  fontFamily={'monaco,Consolas,Lucida Console,monospace'}
                   textShadow={'0 0 3px #d19446'}
                   borderRadius={20}
                   p={2}
