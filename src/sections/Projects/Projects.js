@@ -3,7 +3,7 @@ import { Flex } from '@chakra-ui/layout';
 
 export default function Projects() {
   return (
-    <Flex bg="orange" h={400} color={'white'} id='projects-section'>
+    <Flex bg="burlywood" h={700} color={'white'} id="projects-section">
       Projects
     </Flex>
   );
