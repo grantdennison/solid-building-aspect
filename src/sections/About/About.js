@@ -34,7 +34,7 @@ export default function About() {
         bgSize={'100% 100%'}
         shadow={'inset 0 0 0 2000px rgba(0,0,0,0.8)'}
         w={'100%'}
-        pt={40}
+        pt={20}
         pb={40}
         color={'white'}
         justifyContent="center"

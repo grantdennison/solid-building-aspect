@@ -19,6 +19,7 @@ import paint from '../../images/slider/image6.jpg';
 import cladding from '../../images/slider/cladding.jpg';
 import frame from '../../images/slider/image3.jpg';
 import plaster from '../../images/about/plaster.jpg';
+import bgBack from '../../images/services/deck.jpg';
 
 const serHead = 'Services provided by Solid Building Aspect Ltd:';
 const serFoot =
@@ -59,23 +60,26 @@ export default function Services() {
   return (
     <Flex
       color={'white'}
-      bgGradient={
-        'repeating-linear(to-bl, #4d3b0b 10%, #654f14 15%, #4d3b0b 20%,  #654f14 25%, #100e2d 30%)'
-      }
+      bgImage={bgBack}
+      // bgGradient={
+      //   'repeating-linear(to-bl, #4d3b0b 3%, #654f14 5%, #4d3b0b 7%,  #654f14 9%, #100e2d 11%)'
+      // }
+      shadow={'inset 0 0 0 2000px rgba(0,0,0,0.5)'}
       id="services-section"
       justifyContent={'center'}
       p={12}
     >
       <VStack>
-        <Heading pb={10}>{serHead}</Heading>
+        <Heading pb={20}>{serHead}</Heading>
         <SimpleGrid spacing={8} minChildWidth={wDevice ? 400 : 280}>
           {servises.map((service, index) => (
-            <Card bgColor={'blackAlpha.800'} borderRadius={40}>
+            <Card bgColor={'blackAlpha.400'} borderRadius={40}>
               <CardHeader>
                 <Heading
                   size="lg"
+                  textShadow={'dark-lg'}
                   bgGradient={
-                    'linear(to-l, #d19446 0%, #dcaf77 45%, #8c5e2a 100%)'
+                    'linear(to-l, #8c6804 0%, #dcaf77 45%, #8c5e2a 100%)'
                   }
                   bgClip={'text'}
                 >
@@ -88,6 +92,7 @@ export default function Services() {
                   alt={'image'}
                   w={'100%'}
                   maxH={300}
+                  shadow={'dark-lg'}
                 ></Image>
               </CardBody>
               <CardFooter>
@@ -99,7 +104,7 @@ export default function Services() {
           ))}
         </SimpleGrid>
         <Text
-          pt={30}
+          pt={45}
           pb={30}
           maxW={1200}
           fontSize={{ base: '15px', md: '25px', lg: '26px' }}

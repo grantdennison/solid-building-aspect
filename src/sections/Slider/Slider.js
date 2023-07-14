@@ -1,5 +1,12 @@
 import React from 'react';
-import { Box, Stack, Heading, Text, Container } from '@chakra-ui/react';
+import {
+  Box,
+  Stack,
+  Heading,
+  Text,
+  Container,
+  useMediaQuery,
+} from '@chakra-ui/react';
 import Slider from 'react-slick';
 import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
@@ -15,7 +22,7 @@ import slide6 from '../../images/slider/image6.jpg';
 // Settings for the slider
 const settings = {
   dots: true,
-  arrows: true,
+  arrows: false,
   infinite: true,
   autoplay: true,
   speed: 4000,
@@ -32,50 +39,51 @@ const settings = {
 
 const cards = [
   {
-    title: 'Design Projects 1',
-    text: "The project board is an exclusive resource for contract work. It's perfect for freelancers, agencies, and moonlighters.",
+    title: 'Project 1',
+    text: 'SFS Frame Systems',
     image: slide1,
   },
   {
-    title: 'Design Projects 2',
-    text: "The project board is an exclusive resource for contract work. It's perfect for freelancers, agencies, and moonlighters.",
+    title: 'Project 2',
+    text: 'Aluminium Decking',
     image: slide2,
   },
   {
-    title: 'Design Projects 3',
-    text: "The project board is an exclusive resource for contract work. It's perfect for freelancers, agencies, and moonlighters.",
+    title: 'Project 3',
+    text: 'SFS Frame Systems',
     image: slide3,
   },
   {
-    title: 'Design Projects 4',
-    text: "The project board is an exclusive resource for contract work. It's perfect for freelancers, agencies, and moonlighters.",
+    title: 'Project 4',
+    text: 'Building render in London',
     image: slide4,
   },
   {
-    title: 'Design Projects 5',
-    text: "The project board is an exclusive resource for contract work. It's perfect for freelancers, agencies, and moonlighters.",
+    title: 'Project 5',
+    text: 'EWI & Render Systems',
     image: slide5,
   },
   {
-    title: 'Design Projects 6',
-    text: "The project board is an exclusive resource for contract work. It's perfect for freelancers, agencies, and moonlighters.",
+    title: 'Project 6',
+    text: 'Painting and Decorating',
     image: slide6,
   },
 ];
 
 export default function HomeSlider() {
+  const [wDevice] = useMediaQuery('(min-width: 990px)');
+  const sliderHeight = wDevice ? 600 : 300;
   return (
     <Box
       position={'relative'}
       overflow={'hidden'}
       width={'100%'}
-      height={'565px'}
-      pt={170}
+      pt={wDevice ? 160 : 145}
     >
       <Slider {...settings}>
         {cards.map((card, index) => (
           <Box
-            h={400}
+            h={sliderHeight}
             pos={'relative'}
             key={`${index}a`}
             bgPos="center"
@@ -84,7 +92,7 @@ export default function HomeSlider() {
             bgSize={'contain'}
           >
             <Box
-              h={400}
+              h={sliderHeight}
               filter={'blur(9px) brightness(30%)'}
               pos="absolute"
               top={0}
@@ -98,17 +106,10 @@ export default function HomeSlider() {
               bgSize={'contain'}
               zIndex={-1}
             />
-            <Container
-              size="container.lg"
-              height="90%"
-              position="relative"
-              display="flex"
-              alignItems="end"
-              zIndex={2}
-            >
+            <Container p={4} position="absolute" justifyContent={'left'}>
               <Stack spacing={1}>
                 <Heading
-                  fontSize={'2xl'}
+                  fontSize={[20, 25, 35]}
                   fontStyle={'italic'}
                   color={'#d19446'}
                   textShadow={'2px 2px 3px black'}
@@ -117,12 +118,12 @@ export default function HomeSlider() {
                 </Heading>
                 <Text
                   bgColor={'whiteAlpha.700'}
-                  fontSize={20}
+                  fontSize={[15, 20, 25]}
                   color="black"
                   fontFamily={'monaco,Consolas,Lucida Console,monospace'}
                   textShadow={'0 0 3px #d19446'}
                   borderRadius={20}
-                  p={2}
+                  p={1}
                 >
                   {card.text}
                 </Text>
