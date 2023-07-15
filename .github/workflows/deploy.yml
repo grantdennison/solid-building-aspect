@@ -10,15 +10,6 @@ jobs:
     steps:
       - name: checkout
         uses: actions/checkout@master
-      - name: Set up Node.js
-        uses: actions/setup-node@v3
-        with:
-         node-version: 16
-
-      - name: npm install, build, and test
-        run: |
-          npm install
-          npm run build --if-present        
 
       - name: deploy
         id: funny-deploy
