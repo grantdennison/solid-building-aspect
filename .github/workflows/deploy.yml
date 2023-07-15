@@ -1,0 +1,32 @@
+name: Deploy
+ 
+on:
+  workflow_dispatch:
+      
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    name: deploy test
+    steps:
+      - name: checkout
+        uses: actions/checkout@master
+      - name: Set up Node.js
+        uses: actions/setup-node@v3
+        with:
+         node-version: 16
+
+      - name: npm install, build, and test
+        run: |
+          npm install
+          npm run build --if-present        
+
+      - name: deploy
+        id: funny-deploy
+        uses: BoatNg/funny-deploy@master
+        env:
+          REMOTE_HOST: "${{ secrets.HOST_IP }}"
+          REMOTE_USER: "${{ secrets.SSH_USERNAME }}"
+          REMOTE_PORT: "${{ secrets.SSH_PORT }}"
+          REMOTE_PASSWORD: "${{ secrets.SSH_PASSWORD }}"
+          REMOTE_PATH: "/home/u426412520/domains/grant-dennison.co.uk/public_html/S_B_A"
+          SOURCE: "./build"
