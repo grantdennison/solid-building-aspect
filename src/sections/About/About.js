@@ -32,7 +32,7 @@ export default function About() {
         bgImg={bgImage}
         bgPos={'center'}
         bgSize={'100% 100%'}
-        shadow={'inset 0 0 0 2000px rgba(0,0,0,0.8)'}
+        shadow={'inset 0 0 0 2000px rgba(0,0,0,0.85)'}
         w={'100%'}
         pt={20}
         pb={40}

@@ -8,7 +8,6 @@ import {
   Image,
   CardBody,
   Heading,
-  Link,
   Text,
   VStack,
   useMediaQuery,
@@ -61,9 +60,6 @@ export default function Services() {
     <Flex
       color={'white'}
       bgImage={bgBack}
-      // bgGradient={
-      //   'repeating-linear(to-bl, #4d3b0b 3%, #654f14 5%, #4d3b0b 7%,  #654f14 9%, #100e2d 11%)'
-      // }
       shadow={'inset 0 0 0 2000px rgba(0,0,0,0.5)'}
       id="services-section"
       justifyContent={'center'}
@@ -104,10 +100,13 @@ export default function Services() {
           ))}
         </SimpleGrid>
         <Text
-          pt={45}
-          pb={30}
+          mt={20}
+          p={5}
           maxW={1200}
           fontSize={{ base: '15px', md: '25px', lg: '26px' }}
+          bgColor={'whiteAlpha.300'}
+          borderRadius={100}
+          align={'center'}
         >
           {serFoot}
         </Text>

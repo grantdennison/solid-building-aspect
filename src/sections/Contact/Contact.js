@@ -22,14 +22,11 @@ export default function Contact() {
 
   const handleSubmit = e => {
     e.preventDefault();
-    // Perform form submission logic here
-    // You can validate the fields and send the data to a server
 
-    // Example validation for email field
-    if (!email.includes('@')) {
+    if (message.length < 50) {
       toast({
-        title: 'Invalid Email',
-        description: 'Please enter a valid email address.',
+        title: 'Message Too Short',
+        description: 'Please enter minimun of 50 characters',
         status: 'error',
         duration: 3000,
         isClosable: true,

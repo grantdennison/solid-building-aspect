@@ -25,9 +25,9 @@ const settings = {
   arrows: false,
   infinite: true,
   autoplay: true,
-  speed: 4000,
+  speed: 3000,
   fade: true,
-  autoplaySpeed: 5000,
+  autoplaySpeed: 4000,
   slidesToShow: 1,
   slidesToScroll: 1,
   appendDots: dots => (
