@@ -13,46 +13,8 @@ import {
   useMediaQuery,
 } from '@chakra-ui/react';
 
-import deck from '../../images/slider/image4.jpg';
-import paint from '../../images/slider/image6.jpg';
-import cladding from '../../images/slider/cladding.jpg';
-import frame from '../../images/slider/image3.jpg';
-import plaster from '../../images/about/plaster.jpg';
 import bgBack from '../../images/services/deck.jpg';
-
-const serHead = 'Services provided by Solid Building Aspect Ltd:';
-const serFoot =
-  'These services showcase our commitment to craftsmanship, innovation, and delivering exceptional results. Choose Solid Building Aspect Ltd for your construction project and experience our expertise in these areas.';
-
-const servises = [
-  {
-    image: plaster,
-    header: 'Dry Lining:',
-    text: 'Dry Lining: Our company specializes in Dry Lining, a versatile method that ensures a seamless finish. We have the expertise to transform spaces with precision and attention to detail.',
-  },
-  {
-    image: frame,
-    header: 'SFS Frame Systems:',
-    text: 'SFS Frame Systems: We excel in SFS Frame Systems, creating robust structures that are durable and reliable. Our team of professionals is skilled in constructing high-quality frame systems for various construction projects.',
-  },
-
-  {
-    image: deck,
-    header: 'Aluminium Decking:',
-    text: 'Aluminium Decking: At Solid Building Aspect Ltd, we offer Aluminium Decking solutions that combine aesthetics and functionality. Our decking options are designed to enhance outdoor spaces, providing a durable and visually appealing surface.',
-  },
-
-  {
-    image: cladding,
-    header: 'EWI & Render Systems:',
-    text: 'EWI & Render Systems: We provide energy-efficient External Wall Insulation (EWI) and Render Systems to enhance thermal performance. Our systems are designed to improve insulation and protect buildings from external elements.',
-  },
-  {
-    image: paint,
-    header: 'Painting and Decorating:',
-    text: 'Painting and Decorating: Our skilled painters and decorators are experienced in transforming spaces with a fresh coat of paint and attention to detail. We offer a wide range of colors and finishes to create the desired atmosphere in your building or office. Our team will prepare the surfaces, apply weather-resistant paints, and provide restoration and repair services if needed.',
-  },
-];
+import { servises, serFoot, serHead } from './servicesData.js';
 
 export default function Services() {
   const [wDevice] = useMediaQuery('(min-width: 400px)');
@@ -66,10 +28,17 @@ export default function Services() {
       p={12}
     >
       <VStack>
-        <Heading pb={20}>{serHead}</Heading>
+        <Heading pb={8} fontSize={{ base: '40px', md: '50px' }}>
+          {serHead}
+        </Heading>
         <SimpleGrid spacing={8} minChildWidth={wDevice ? 400 : 280}>
           {servises.map((service, index) => (
-            <Card bgColor={'blackAlpha.400'} borderRadius={40}>
+            <Card
+              bgColor={'blackAlpha.500'}
+              borderRadius={40}
+              shadow={'0 0 2px 2px'}
+              // border={'2px solid black'}
+            >
               <CardHeader>
                 <Heading
                   size="lg"
@@ -89,6 +58,7 @@ export default function Services() {
                   w={'100%'}
                   maxH={300}
                   shadow={'dark-lg'}
+                  borderRadius={10}
                 ></Image>
               </CardBody>
               <CardFooter>

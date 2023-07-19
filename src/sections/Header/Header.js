@@ -1,4 +1,4 @@
-import React, {useRef } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 // import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 // import { faBars, faEnvelope, faPhone } from '@fortawesome/free-solid-svg-icons';
 // import { faLinkedin, faFacebook } from '@fortawesome/free-brands-svg-icons';
@@ -23,33 +23,29 @@ import {
   DrawerFooter,
   Icon,
 } from '@chakra-ui/react';
-// import './Header.css';
+
+import { FaMobile, FaEnvelope, FaMapLocationDot } from 'react-icons/fa6';
+
 import logo from '../../images/logo1.png';
 import navBack from '../../images/nav top.png';
 import sam from '../../images/Sam.png';
-import emailIcon from '../../images/header/email.png';
-import facebook from '../../images/header/facebook.png';
-import linkedin from '../../images/header/linkedin.png';
-import phone from '../../images/header/phone.png';
 import bars from '../../images/header/bars.png';
 
-const socials = [
-  {
-    icon: emailIcon,
+const contacts = {
+  email: {
+    icon: FaEnvelope,
     url: 'mailto: sam@solidbuildingaspect.co.uk',
+    name: 'sam@solidbuildingaspect.co.uk',
   },
-  {
-    icon: linkedin,
-    url: 'https://www.linkedin.com/in/sami-selimi-7b2733131/?originalSubdomain=uk',
+  mobile: {
+    icon: FaMobile,
+    name: '07737551182',
   },
-  {
-    icon: facebook,
-    url: 'https://www.facebook.com/solidbuildingaspect?locale=en_GB',
+  loc: {
+    icon: FaMapLocationDot,
+    name: 'London',
   },
-  {
-    icon: phone,
-  },
-];
+};
 
 const navBars = [
   { name: 'home', heading: 'Home' },
@@ -62,6 +58,7 @@ const navBars = [
 const themeGradient = {
   bgGradient: 'linear(to-l, #d19446 0%, #dcaf77 45%, #8c5e2a 100%)',
   bgClip: 'text',
+  whiteSpace: 'nowrap',
 };
 
 export default function Header() {
@@ -70,41 +67,49 @@ export default function Header() {
   const [hDevice] = useMediaQuery('(min-height: 600px)');
   const { isOpen, onOpen, onClose } = useDisclosure();
   const btnRef = React.useRef();
-  const navHeight = wDevice ? 160 : 145;
+  const navHeight = wDevice ? 180 : 140;
+  const navView = useRef(true);
+  useEffect(() => {
+    let prevScrollPos = window.scrollY;
 
-  // useEffect(() => {
-  //   let prevScrollPos = window.scrollY;
+    const handleScroll = () => {
+      const currentScrollPos = window.scrollY;
+      const headerElement = headerRef.current;
+      if (!headerElement) {
+        return;
+      }
+      if (prevScrollPos > currentScrollPos && navView.current) {
+        headerElement.style.transform = 'translateY(0)';
+      } else {
+        headerElement.style.transform = 'translateY(-180px)';
+      }
+      prevScrollPos = currentScrollPos;
+    };
 
-  //   const handleScroll = () => {
-  //     const currentScrollPos = window.scrollY;
-  //     const headerElement = headerRef.current;
-  //     if (!headerElement) {
-  //       return;
-  //     }
-  //     if (prevScrollPos > currentScrollPos || currentScrollPos < 12) {
-  //       headerElement.style.transform = 'translateY(0)';
-  //     } else {
-  //       headerElement.style.transform = 'translateY(-170px)';
-  //     }
-  //     prevScrollPos = currentScrollPos;
-  //   };
+    window.addEventListener('scroll', handleScroll);
 
-  //   window.addEventListener('scroll', handleScroll);
-
-  //   return () => {
-  //     window.removeEventListener('scroll', handleScroll);
-  //   };
-  // }, []);
+    return () => {
+      window.removeEventListener('scroll', handleScroll);
+    };
+  }, [navView]);
 
   const handleClick = anchor => {
     const id = `${anchor}-section`;
     const element = document.getElementById(id);
 
     if (element) {
-      const navBarHeight = navHeight; // Adjust this value to the height of your fixed navigation bar
-
       const elementPosition = element.getBoundingClientRect().top;
-      const offsetPosition = elementPosition - navBarHeight;
+      let offsetPosition = elementPosition;
+
+      if (anchor !== 'home') {
+        navView.current = false;
+      } else {
+        offsetPosition -= navHeight; // Adjust this value to the height of your fixed navigation bar
+      }
+
+      setTimeout(() => {
+        navView.current = true;
+      }, 1000);
 
       window.scrollTo({
         top: window.scrollY + offsetPosition,
@@ -114,129 +119,138 @@ export default function Header() {
   };
 
   return (
-    <Flex id="home-section">
+    <Flex id="home-section" minW={350} alignContent={'space-between'}>
       <Flex
         position="fixed"
         top={0}
         left={0}
         right={0}
-        translateY={0}
-        // transitionProperty="transform"
-        // transitionDuration=".5s"
-        // transitionTimingFunction="ease-in-out"
+        // translateY={0}
+        transitionProperty="transform"
+        transitionDuration=".3s"
+        transitionTimingFunction="ease-in-out"
         bgImg={navBack}
         bgPos={'center'}
         bgSize={'cover'}
+        bgColor={'white'}
         shadow={'inset 0 0 0 118px rgba(0,0,0,0.87)'}
         h={navHeight}
         ref={headerRef}
-        p={2}
         zIndex={100}
-        // minW="670px"
+        pl={1}
+        pr={1}
+        pt={[5, 1]}
+
         // justifyContent={"center"}
       >
-        <Flex color="white" w={3000}>
-          {/* ##### Main Logo Start #### */}
-          <Flex maxW={'280'}>
-            <VStack justify={'center'}>
-              <Image pt={2} src={logo} alt="logo" />
-              <Text mt={-2} fontSize={['8px', '3vw', '21px']}>
-                Your Trusted Subcontractor
-              </Text>
-            </VStack>
-          </Flex>
-          <Spacer />
+        <Flex color="white" w={'100%'}>
+          <VStack w={'100%'} justifyContent={'space-between'}>
+            <HStack justifyContent={'space-between'} w={'100%'}>
+              {/* ##### Main Logo Start #### */}
+              <Flex maxW={'280'} maxH={navHeight - 5}>
+                <VStack justify={'center'}>
+                  <Image src={logo} alt="logo" />
+                  <Text mt={-2} fontSize={['13px', '3vw', '21px']}>
+                    Your Trusted Subcontractor
+                  </Text>
+                </VStack>
+              </Flex>
+              <Spacer />
+              {/* ##### Main Logo End #### */}
 
-          {/* ##### Main Logo End #### */}
-          <VStack justify="flex-end">
-            <Flex
-              px={4}
-              pt={1}
-              className="nav_bar"
-              direction={wDevice ? 'row' : 'column'}
-            >
-              {/* #### Avitar and Name Start #### */}
-              <HStack>
-                <Avatar
-                  name="Sam Salimi"
-                  src={sam}
-                  boxSize={wDevice ? 24 : 20}
-                />
-                <Flex {...themeGradient}>
-                  <Stack>
-                    <Text fontSize={['20px', '3vw', '40px']}>SAM SALIMI</Text>
-                    <Text mt={-3} fontSize={['12px', '3vw', '30px']}>
-                      Director
-                    </Text>
-                  </Stack>
-                </Flex>
-              </HStack>
-              {/* #### Avitar and Name End #### */}
-
-              {/* #### Social Icons Start #### */}
-              <Flex
-                className="icon_cont"
-                w={200}
-                alignSelf={'flex-end'}
-                justifyContent={'space-between'}
-              >
-                {socials.map((social, index) => (
+              {/* #### Contacts Icons Start #### */}
+              <VStack justifyContent={'space-between'}>
+                <Spacer />
+                <VStack className="icon_cont" alignItems="flex-start">
                   <Link
-                    href={social.url}
-                    key={index}
+                    href={contacts.email.url}
                     _hover={{
-                      transform: 'scale(1.4)',
+                      transform: 'scale(1.02)',
                     }}
                   >
-                    <Icon
-                      as={Image}
-                      src={social.icon}
-                      className="icon"
-                      boxSize={wDevice ? 9 : 7}
-                    />
+                    <HStack>
+                      <Icon
+                        as={contacts.email.icon}
+                        className="icon"
+                        boxSize={6}
+                      />
+                      <Text
+                        minW={'180px'}
+                        fontSize={[11, 15, 23]}
+                        {...themeGradient}
+                      >
+                        {contacts.email.name}
+                      </Text>
+                    </HStack>
                   </Link>
-                ))}
-                <Flex
-                  ref={btnRef}
-                  onClick={onOpen}
-                  display={['flex', 'flex', 'flex', 'none']}
-                  key={'bars'}
-                  mt={-2}
-                  _hover={{
-                    transform: 'scale(1.4)',
-                  }}
-                >
-                  <Icon as={Image} src={bars} alt="email" boxSize={10}></Icon>
+                  <HStack>
+                    <Icon as={FaMobile} boxSize={6} />
+                    <Text
+                      minW={'120px'}
+                      {...themeGradient}
+                      fontSize={[16, 18, 23]}
+                    >
+                      {contacts.mobile.name}
+                    </Text>
+                  </HStack>
+                  <HStack w={'100%'} justifyContent={'space-between'}>
+                    <Icon as={FaMapLocationDot} boxSize={6} />
+                    <Text
+                      {...themeGradient}
+                      minW={'80px'}
+                      fontSize={[16, 18, 23]}
+                    >
+                      {contacts.loc.name}
+                    </Text>
+                    <Spacer />
+                    <Flex
+                      ref={btnRef}
+                      onClick={onOpen}
+                      display={['flex', 'flex', 'flex', 'none']}
+                      key={'bars'}
+                      mt={-2}
+                      _hover={{
+                        transform: 'scale(1.4)',
+                      }}
+                    >
+                      <Icon
+                        as={Image}
+                        src={bars}
+                        alt="email"
+                        boxSize={10}
+                      ></Icon>
+                    </Flex>
+                  </HStack>
+                </VStack>
+                {/* #### Contacts Icons End #### */}
+
+                {/* #### Navigation Bar Start horizontal #### */}
+
+                <Flex display={['none', 'none', 'none', 'flex']}>
+                  <Flex
+                    justifyContent={'space-between'}
+                    spacing={8}
+                    fontSize={25}
+                    fontWeight="bold"
+                    minW={550}
+                  >
+                    {navBars.map(navName => (
+                      <Link
+                        href={`/S_B_A/#${navName.name}`}
+                        onClick={() => {
+                          handleClick(navName.name);
+                        }}
+                        key={navName.name}
+                        _hover={{ ...themeGradient, transform: 'scale(1.2)' }}
+                      >
+                        {navName.heading}
+                      </Link>
+                    ))}
+                  </Flex>
                 </Flex>
-              </Flex>
-              {/* #### Social Icons End #### */}
-            </Flex>
-
-            {/* #### Navigation Bar Start horizontal #### */}
-
-            <Flex display={['none', 'none', 'none', 'flex']}>
-              <Flex
-                justifyContent={'space-between'}
-                spacing={8}
-                fontSize={25}
-                fontWeight="bold"
-                minW={550}
-              >
-                {navBars.map(navName => (
-                  <Link
-                    href={`/#${navName.name}`}
-                    onClick={() => {
-                      handleClick(navName.name);
-                    }}
-                    key={navName.name}
-                    _hover={{ ...themeGradient, transform: 'scale(1.2)' }}
-                  >
-                    {navName.heading}
-                  </Link>
-                ))}
-              </Flex>
-            </Flex>
-            {/* #### Navigation Bar End hrizontal #### */}
+                {/* #### Navigation Bar End hrizontal #### */}
+              </VStack>
+            </HStack>
           </VStack>
         </Flex>
       </Flex>
@@ -274,7 +288,7 @@ export default function Header() {
             >
               {navBars.map(navName => (
                 <Link
-                  href={`/#${navName.name}`}
+                  href={`/S_B_A/#${navName.name}`}
                   onClick={() => {
                     handleClick(navName.name);
                     onClose();

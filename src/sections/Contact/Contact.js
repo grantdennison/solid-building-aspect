@@ -66,7 +66,9 @@ export default function Contact() {
       <Flex flexDir="column" maxW={500} w="100%">
         <form onSubmit={handleSubmit}>
           <VStack spacing={6} align="start">
-            <Heading>Contact Form:</Heading>
+            <Heading pb={8} fontSize={{ base: '40px', md: '50px' }}>
+              Contact Form:
+            </Heading>
             <FormControl isRequired>
               <FormLabel>Name</FormLabel>
               <Input
