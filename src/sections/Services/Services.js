@@ -37,7 +37,7 @@ export default function Services() {
               bgColor={'blackAlpha.500'}
               borderRadius={40}
               shadow={'0 0 2px 2px'}
-              // border={'2px solid black'}
+              key={`ser${index}`}
             >
               <CardHeader>
                 <Heading

@@ -4,13 +4,7 @@ import Slider from 'react-slick';
 import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
 import '../Slider/Slider.css';
-
-import slide1 from '../../images/slider/image1.jpg';
-import slide2 from '../../images/slider/image2.jpg';
-import slide3 from '../../images/slider/image3.jpg';
-import slide4 from '../../images/slider/image4.jpg';
-import slide5 from '../../images/slider/image5.jpg';
-
+import images from './sliderData.js';
 // Settings for the slider
 const settings = {
   dots: true,
@@ -29,23 +23,10 @@ const settings = {
   ),
 };
 
-const cards = [
-  {
-    image: slide1,
-  },
-  {
-    image: slide2,
-  },
-  {
-    image: slide3,
-  },
-  {
-    image: slide4,
-  },
-  {
-    image: slide5,
-  },
-];
+const cards = images.map((image, index) => ({
+  image: image,
+  key: `slide-${index}`,
+}));
 
 export default function HomeSlider() {
   const [wDevice] = useMediaQuery('(min-width: 990px)');
@@ -62,7 +43,7 @@ export default function HomeSlider() {
           <Box
             h={sliderHeight}
             pos={'relative'}
-            key={`${index}a`}
+            key={card.key}
             bgPos="center"
             bgRepeat="no-repeat"
             bgImage={card.image}
@@ -76,7 +57,6 @@ export default function HomeSlider() {
               left={0}
               right={0}
               bottom={0}
-              key={`${index}a`}
               bgPos="center"
               bgRepeat="repeat"
               bgImage={card.image}

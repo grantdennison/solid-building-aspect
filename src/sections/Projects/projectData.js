@@ -1,4 +1,4 @@
-import plaster from '../../images/slider/facade.jpg';
+import plaster from '../../images/services/facade.jpg';
 
 export const projHead = 'Projects:';
 

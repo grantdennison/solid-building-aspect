@@ -22,7 +22,7 @@ import ProjectModal from './ProjectModal.js';
 
 export default function Projects() {
   const [wDevice] = useMediaQuery('(min-width: 400px)');
-  const { isOpen, onOpen, onClose } = useDisclosure();
+  const { isOpen, onOpen } = useDisclosure();
 
   // Step 2: Create a new state variable to store the index of the selected project for the modal
   const [selectedProjectIndex, setSelectedProjectIndex] = useState(null);
@@ -55,6 +55,7 @@ export default function Projects() {
               borderRadius={40}
               shadow={'0 0 2px 2px'}
               border={'2px solid black'}
+              key={`proj${index}`}
             >
               <CardHeader>
                 <Heading

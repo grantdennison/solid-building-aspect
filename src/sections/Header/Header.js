@@ -1,7 +1,4 @@
-import React, { useEffect, useRef, useState } from 'react';
-// import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-// import { faBars, faEnvelope, faPhone } from '@fortawesome/free-solid-svg-icons';
-// import { faLinkedin, faFacebook } from '@fortawesome/free-brands-svg-icons';
+import React, { useEffect, useRef } from 'react';
 import {
   Avatar,
   Flex,
@@ -104,7 +101,7 @@ export default function Header() {
       if (anchor !== 'home') {
         navView.current = false;
       } else {
-        offsetPosition -= navHeight; // Adjust this value to the height of your fixed navigation bar
+        offsetPosition -= navHeight;
       }
 
       setTimeout(() => {

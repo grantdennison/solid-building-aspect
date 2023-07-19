@@ -24,6 +24,7 @@ export default function About() {
           <Text
             fontSize={{ base: '15px', md: '25px', lg: '36px' }}
             fontFamily={'Verdana (sans-serif)'}
+            whiteSpace={'pre-line'}
           >
             {aboutBody}
           </Text>

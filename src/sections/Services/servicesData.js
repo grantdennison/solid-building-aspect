@@ -1,9 +1,9 @@
 import deck from '../../images/slider/image4.jpg';
 // import paint from '../../images/slider/image6.jpg';
-import renderImg from '../../images/slider/render.jpg';
+import renderImg from '../../images/services/render.jpg';
 import frame from '../../images/slider/image3.jpg';
 import plaster from '../../images/about/plaster.jpg';
-import facade from '../../images/slider/facade.jpg';
+import facade from '../../images/services/facade.jpg';
 
 export const serHead = 'Services:';
 export const serFoot =
